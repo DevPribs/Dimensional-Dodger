@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class MobilePlayerScript : NetworkBehaviour {
 
+	[SyncVar(hook="OnChangeHealth")]
     public int hp = 3;
     public int speed = 5;
     public GameObject bullet;
     public float firerate = 0.75f;
     private float time;
+	public Slider healthBar;
 
 	// Use this for initialization
 	void Start ()
@@ -59,12 +62,27 @@ public class MobilePlayerScript : NetworkBehaviour {
     {
         if (colider.gameObject.tag == "ComputerBullet")
         {
-            hp -= 1;
-            Destroy(colider.gameObject);
-            if (hp == 0)
-            {
-                Destroy(this.gameObject);
-            }
+			TakeDamage (colider);
         }
     }
+
+	void TakeDamage(Collider2D colider)
+	{
+		if (!isServer)
+		{
+			return;
+		}
+
+		hp -= 1;
+		Destroy(colider.gameObject);
+		if (hp == 0)
+		{
+			Destroy(this.gameObject);
+		}
+	}
+
+	void OnChangeHealth(int currentHealth)
+	{
+		healthBar.value = currentHealth;
+	}
 }
