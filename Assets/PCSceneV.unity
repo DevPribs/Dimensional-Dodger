@@ -288,6 +288,8 @@ MonoBehaviour:
   - {fileID: 1463994038285150, guid: c10d8ae3ab7bfea4788ab29fa8601c71, type: 2}
   - {fileID: 1193549937964590, guid: 58cc96d334417ac47b87528ff5fe3526, type: 2}
   - {fileID: 1584536085815660, guid: 0994cebb861e68f4f8a6cf0fb53a4527, type: 2}
+  - {fileID: 1167343851284730, guid: 1a19961c091737c49b7a9007d6e681f0, type: 2}
+  - {fileID: 1222568589063810, guid: e0b4a395e1f53d64799d86f8c087436a, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -344,7 +346,8 @@ MonoBehaviour:
   isNetworkActive: 0
   matchMaker: {fileID: 0}
   cpPrefab: {fileID: 1584536085815660, guid: 0994cebb861e68f4f8a6cf0fb53a4527, type: 2}
-  mpPrefab: {fileID: 1573458731990984, guid: f72cf1a893649dd46966f0ad60fffaff, type: 2}
+  mpPrefab: {fileID: 1573458731990984, guid: e5d191ca37b1c044d8783afd47590538, type: 2}
+  topPlayerSelected: 0
 --- !u!4 &572918487
 Transform:
   m_ObjectHideFlags: 0

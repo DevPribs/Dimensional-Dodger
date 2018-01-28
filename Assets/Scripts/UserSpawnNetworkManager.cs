@@ -7,7 +7,7 @@ public class UserSpawnNetworkManager : NetworkManager {
 
     public GameObject cpPrefab;
     public GameObject mpPrefab;
-    private int topPlayerSelected;
+    public int topPlayerSelected;
 
 	// Use this for initialization
 	void Start () {

@@ -284,7 +284,7 @@ MonoBehaviour:
     i14: 69
     i15: 39
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114997639775935772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -300,6 +300,8 @@ MonoBehaviour:
   bullet: {fileID: 1193549937964590, guid: 58cc96d334417ac47b87528ff5fe3526, type: 2}
   angle: 30
   firegroup1: {fileID: 1237418914889262}
+  laser1: {fileID: 1167343851284730, guid: 1a19961c091737c49b7a9007d6e681f0, type: 2}
+  laser2: {fileID: 1222568589063810, guid: e0b4a395e1f53d64799d86f8c087436a, type: 2}
 --- !u!212 &212045920515649632
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -9,6 +9,7 @@ public class MobilePlayerScript : NetworkBehaviour {
 	[SyncVar(hook="OnChangeHealth")]
     public int hp = 3;
     public int speed = 5;
+    public float touchSpeed = 0.2F;
     public GameObject bullet;
     public float firerate = 0.75f;
     private float time;
@@ -40,7 +41,7 @@ public class MobilePlayerScript : NetworkBehaviour {
             Touch touch = Input.GetTouch(0);
             Vector3 updatedPosition = Camera.main.ScreenToWorldPoint(touch.position);
             updatedPosition.z = 0;
-            this.transform.position = updatedPosition;
+            this.transform.position = Vector3.MoveTowards(this.transform.position, updatedPosition, touchSpeed);
         }
 
         if (time <= Time.time)
