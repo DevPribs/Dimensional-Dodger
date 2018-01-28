@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/MobileScene.unity
     guid: 965ed7955cabb43b2b24943eba847c1f
-  - enabled: 1
+  - enabled: 0
     path: Assets/PCScene.unity
     guid: f62c0eee0d1c1724691720333728724b
+  - enabled: 1
+    path: Assets/PCSceneV.unity
+    guid: bb6ac3d26ed13a14b8af9f40b02e2e12

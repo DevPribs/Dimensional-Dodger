@@ -274,6 +274,7 @@ MonoBehaviour:
   speed: 5
   bullet: {fileID: 1463994038285150, guid: c10d8ae3ab7bfea4788ab29fa8601c71, type: 2}
   healthBar: {fileID: 114584842433139076}
+  firerate: 0.5
 --- !u!114 &114350099839465568
 MonoBehaviour:
   m_ObjectHideFlags: 1
