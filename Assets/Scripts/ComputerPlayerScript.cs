@@ -39,7 +39,7 @@ public class ComputerPlayerScript : MonoBehaviour {
             Destroy(colider.gameObject);
             if( hp == 0)
             {
-                Destroy(this);
+                Destroy(this.gameObject);
             }
         }
     }

@@ -49,7 +49,7 @@ public class MobilePlayerScript : NetworkBehaviour {
             Destroy(colider.gameObject);
             if (hp == 0)
             {
-                Destroy(this);
+                Destroy(this.gameObject);
             }
         }
     }
