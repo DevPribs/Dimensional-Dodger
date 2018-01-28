@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4532891223539602}
   - component: {fileID: 212246575003283252}
   - component: {fileID: 50757027587739148}
+  - component: {fileID: 114855551526242964}
+  - component: {fileID: 114972226083552240}
   m_Layer: 0
   m_Name: BulletBombSpriteSheetGreen_0
   m_TagString: Untagged
@@ -61,6 +63,59 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &114855551526242964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1755404335207550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 99
+    i1: 115
+    i2: 193
+    i3: 69
+    i4: 86
+    i5: 50
+    i6: 4
+    i7: 247
+    i8: 184
+    i9: 162
+    i10: 99
+    i11: 210
+    i12: 190
+    i13: 98
+    i14: 204
+    i15: 52
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114972226083552240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1755404335207550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 2
+  m_SendInterval: 0
+  m_SyncRotationAxis: 3
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!212 &212246575003283252
 SpriteRenderer:
   m_ObjectHideFlags: 1

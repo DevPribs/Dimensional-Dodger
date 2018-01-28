@@ -22,7 +22,7 @@ public class PlayerController : NetworkBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			Fire();
+			CmdFire();
 		}
 	}
 
@@ -31,7 +31,8 @@ public class PlayerController : NetworkBehaviour
 		GetComponent<SpriteRenderer>().material.color = Color.blue;
 	}
 
-	void Fire()
+	[Command]
+	void CmdFire()
 	{
 		// Create the Bullet from the Bullet Prefab
 		var bullet = (GameObject)Instantiate (
@@ -40,7 +41,9 @@ public class PlayerController : NetworkBehaviour
 			bulletSpawn.rotation);
 
 		// Add velocity to the bullet
-		bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.forward * 6;
+		bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.up * 6;
+
+		NetworkServer.Spawn(bullet);
 
 		// Destroy the bullet after 2 seconds
 		Destroy(bullet, 2.0f);
