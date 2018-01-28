@@ -18,7 +18,7 @@ public class ComputerPlayerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if(Input.GetKeyDown("h"))
+		if(Input.GetKeyDown("n"))
         {
             foreach(Transform child in firegroup1.transform)
             {
