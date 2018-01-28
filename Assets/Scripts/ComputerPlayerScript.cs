@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class ComputerPlayerScript : NetworkBehaviour {
 
+	[SyncVar(hook="OnChangeHealth")]
     public int hp = 500;
     public GameObject bullet;
     public int angle = 30;
@@ -12,6 +14,7 @@ public class ComputerPlayerScript : NetworkBehaviour {
     public GameObject laser1;
     public GameObject laser2;
     public Dictionary<int, float> cooldowns;
+	public Slider healthBar;
 
 	// Use this for initialization
 	void Start ()
@@ -90,12 +93,27 @@ public class ComputerPlayerScript : NetworkBehaviour {
     {
         if (colider.gameObject.tag == "MobileBullet")
         {
-            hp -= 1;
-            Destroy(colider.gameObject);
-            if( hp == 0)
-            {
-                Destroy(this.gameObject);
-            }
+			TakeDamage (colider);
         }
     }
+
+	void TakeDamage(Collider2D colider)
+	{
+		if (!isServer)
+		{
+			return;
+		}
+
+		hp -= 1;
+		Destroy(colider.gameObject);
+		if (hp == 0)
+		{
+			Destroy(this.gameObject);
+		}
+	}
+
+	void OnChangeHealth(int currentHealth)
+	{
+		healthBar.value = currentHealth;
+	}
 }

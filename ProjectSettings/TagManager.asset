@@ -8,6 +8,7 @@ TagManager:
   - MobilePlayer
   - ComputerBullet
   - MobileBullet
+  - ComputerLaser
   layers:
   - Default
   - TransparentFX

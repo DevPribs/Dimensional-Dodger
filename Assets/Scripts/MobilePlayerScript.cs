@@ -63,21 +63,47 @@ public class MobilePlayerScript : NetworkBehaviour {
     {
         if (colider.gameObject.tag == "ComputerBullet")
         {
-			TakeDamage (colider);
+			TakeDamage (colider, 1);
         }
+
+		if (colider.gameObject.tag == "ComputerLaser")
+		{
+			TakeDamage (colider, 2);
+		}
+
+		if (colider.gameObject.tag == "ComputerPlayer")
+		{
+			TakeDamage (colider, 3);
+		}
     }
 
-	void TakeDamage(Collider2D colider)
+	void TakeDamage(Collider2D colider, int type)
 	{
 		if (!isServer)
 		{
 			return;
 		}
 
-		hp -= 1;
-		Destroy(colider.gameObject);
-		if (hp == 0)
+		if (type == 1)
 		{
+			hp -= 1;
+			Destroy(colider.gameObject);
+			if (hp == 0)
+			{
+				Destroy(this.gameObject);
+			}
+		}
+		else if (type == 2)
+		{
+			hp -= 1;
+			if (hp == 0)
+			{
+				Destroy(this.gameObject);
+			}
+		}
+		else if (type == 3)
+		{
+			hp = 0;
 			Destroy(this.gameObject);
 		}
 	}
