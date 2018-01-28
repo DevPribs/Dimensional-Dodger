@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class MobilePlayerScript : MonoBehaviour {
+public class MobilePlayerScript : NetworkBehaviour {
 
     public int hp = 3;
     public int speed = 5;
@@ -15,6 +16,11 @@ public class MobilePlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (!isLocalPlayer)
+		{
+			return;
+		}
+
         var x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         var y = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
@@ -23,8 +29,16 @@ public class MobilePlayerScript : MonoBehaviour {
 
         if(Input.GetKeyDown("space"))
         {
-            Instantiate(bullet, this.transform.position, Quaternion.identity);
+			CmdFire ();
         }
+	}
+
+	[Command]
+	void CmdFire()
+	{
+		var b = Instantiate(bullet, this.transform.position, Quaternion.identity);
+
+		NetworkServer.Spawn(b);
 	}
 
     void OnTriggerEnter2D(Collider2D colider)
