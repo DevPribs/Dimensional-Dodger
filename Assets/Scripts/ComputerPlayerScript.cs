@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class ComputerPlayerScript : MonoBehaviour {
+public class ComputerPlayerScript : NetworkBehaviour {
 
     public int hp = 500;
     public GameObject bullet;
@@ -20,16 +21,26 @@ public class ComputerPlayerScript : MonoBehaviour {
     {
 		if(Input.GetKeyDown("n"))
         {
-            foreach(Transform child in firegroup1.transform)
-            {
-                //Quaternion childRotation =  child.transform.rotation
-                Instantiate(bullet, child.transform.position, child.transform.rotation * Quaternion.Euler(0, 0, 180));
-                Instantiate(bullet, child.transform.position, child.transform.rotation * Quaternion.Euler(0, 0, 180 + angle));
-                Instantiate(bullet, child.transform.position, child.transform.rotation * Quaternion.Euler(0, 0, 180 + (angle * -1)));
-            }
+            CmdFire();
         }
 
 	}
+
+    [Command]
+    void CmdFire()
+    {
+        foreach (Transform child in firegroup1.transform)
+        {
+            //Quaternion childRotation =  child.transform.rotation
+            var a = Instantiate(bullet, child.transform.position, child.transform.rotation * Quaternion.Euler(0, 0, 180));
+            var b = Instantiate(bullet, child.transform.position, child.transform.rotation * Quaternion.Euler(0, 0, 180 + angle));
+            var c = Instantiate(bullet, child.transform.position, child.transform.rotation * Quaternion.Euler(0, 0, 180 + (angle * -1)));
+
+            NetworkServer.Spawn(a);
+            NetworkServer.Spawn(b);
+            NetworkServer.Spawn(c);
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D colider)
     {

@@ -40,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 1573458731990984}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3.97, z: 0}
-  m_LocalScale: {x: 2.3049927, y: 2.3049927, z: 2.3049927}
+  m_LocalScale: {x: 1.700101, y: 1.700101, z: 1.700101}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -115,6 +115,7 @@ MonoBehaviour:
   hp: 3
   speed: 5
   bullet: {fileID: 1463994038285150, guid: c10d8ae3ab7bfea4788ab29fa8601c71, type: 2}
+  firerate: 0.5
 --- !u!114 &114350099839465568
 MonoBehaviour:
   m_ObjectHideFlags: 1

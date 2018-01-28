@@ -8,10 +8,13 @@ public class MobilePlayerScript : NetworkBehaviour {
     public int hp = 3;
     public int speed = 5;
     public GameObject bullet;
+    public float firerate = 0.75f;
+    private float time;
 
 	// Use this for initialization
-	void Start () {
-
+	void Start ()
+    {
+        time = Time.time + firerate;
 	}
 	
 	// Update is called once per frame
@@ -27,11 +30,22 @@ public class MobilePlayerScript : NetworkBehaviour {
         transform.Translate(x, 0, 0);
         transform.Translate(0, y, 0);
 
-        if(Input.GetKeyDown("space"))
+        int numberTouches = Input.touchCount;
+
+        if (numberTouches > 0)
         {
-			CmdFire ();
+            Touch touch = Input.GetTouch(0);
+            Vector3 updatedPosition = Camera.main.ScreenToWorldPoint(touch.position);
+            updatedPosition.z = 0;
+            this.transform.position = updatedPosition;
         }
-	}
+
+        if (time <= Time.time)
+        {
+            time = Time.time + firerate;
+            CmdFire();
+        }
+    }
 
 	[Command]
 	void CmdFire()
