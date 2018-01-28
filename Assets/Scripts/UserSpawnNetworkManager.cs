@@ -7,13 +7,11 @@ public class UserSpawnNetworkManager : NetworkManager {
 
     public GameObject cpPrefab;
     public GameObject mpPrefab;
-    private bool topPlayerSelected;
-    public int connections;
+    private int topPlayerSelected;
 
 	// Use this for initialization
 	void Start () {
-        topPlayerSelected = false;
-        connections = 0;
+        topPlayerSelected = -1;
     }
 	
 	// Update is called once per frame
@@ -28,11 +26,11 @@ public class UserSpawnNetworkManager : NetworkManager {
         //    var player = (GameObject)GameObject.Instantiate(mpPrefab, mpPrefab.transform.position, mpPrefab.transform.rotation);
         //    NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         //}
-        if(!topPlayerSelected && SystemInfo.deviceType == DeviceType.Desktop)
+        if(topPlayerSelected == -1 && SystemInfo.deviceType == DeviceType.Desktop)
         {
             var player = (GameObject)GameObject.Instantiate(cpPrefab, cpPrefab.transform.position, cpPrefab.transform.rotation);
             NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-            topPlayerSelected = true;
+            topPlayerSelected = conn.connectionId;
         }
         else
         {
@@ -42,19 +40,12 @@ public class UserSpawnNetworkManager : NetworkManager {
         
     }
 
-    // 	called on the server when a new client connects
-    public override void OnServerConnect(NetworkConnection conn)
-    {
-        connections += 1;
-    }
-
     // caled on the server when a client disconnects.
     public override void OnServerDisconnect(NetworkConnection conn)
     {
-        connections -= 1;
-        if( connections == 0 )
+        if( conn.connectionId == topPlayerSelected )
         {
-            topPlayerSelected = false;
+            topPlayerSelected = -1;
         }
         NetworkServer.DestroyPlayersForConnection(conn);
     }
