@@ -10,7 +10,9 @@ public class ComputerPlayerScript : NetworkBehaviour {
     public int hp = 500;
     public GameObject bullet;
     public int angle = 30;
+    public int angle2 = 23;
     public GameObject firegroup1;
+    public GameObject firegroup2;
     public GameObject laser1;
     public GameObject laser2;
     public Dictionary<int, float> cooldowns;
@@ -23,6 +25,7 @@ public class ComputerPlayerScript : NetworkBehaviour {
         cooldowns.Add(1, 0);
         cooldowns.Add(2, 0);
         cooldowns.Add(3, 0);
+        cooldowns.Add(4, 0);
     }
 	
 	// Update is called once per frame
@@ -38,7 +41,7 @@ public class ComputerPlayerScript : NetworkBehaviour {
             }
             
         }
-        if(Input.GetKeyDown("u"))
+        if(Input.GetKeyDown("i"))
         {
             if (cooldowns[2] < currentTime)
             {
@@ -52,6 +55,14 @@ public class ComputerPlayerScript : NetworkBehaviour {
             {
                 CmdFire3();
                 cooldowns[3] = currentTime + 6F;
+            }
+        }
+        if (Input.GetKeyDown("u"))
+        {
+            if (cooldowns[4] < currentTime)
+            {
+                CmdFire4();
+                cooldowns[4] = currentTime + 0.1F;
             }
         }
 
@@ -87,6 +98,24 @@ public class ComputerPlayerScript : NetworkBehaviour {
         var e = Instantiate(laser2, laser2.transform.position, laser2.transform.rotation * Quaternion.Euler(0, 0, 0));
 
         NetworkServer.Spawn(e);
+    }
+
+    [Command]
+    void CmdFire4()
+    {
+        foreach (Transform child in firegroup2.transform)
+        {
+            //Quaternion childRotation =  child.transform.rotation
+            var a = Instantiate(bullet, child.transform.position, child.transform.rotation * Quaternion.Euler(0, 0, 180 + (angle2 * 2)));
+            var b = Instantiate(bullet, child.transform.position, child.transform.rotation * Quaternion.Euler(0, 0, 180 + angle2));
+            var c = Instantiate(bullet, child.transform.position, child.transform.rotation * Quaternion.Euler(0, 0, 180 + (angle2 * -1)));
+            var d = Instantiate(bullet, child.transform.position, child.transform.rotation * Quaternion.Euler(0, 0, 180 + (angle2 * -2)));
+
+            NetworkServer.Spawn(a);
+            NetworkServer.Spawn(b);
+            NetworkServer.Spawn(c);
+            NetworkServer.Spawn(d);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D colider)
