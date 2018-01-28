@@ -671,7 +671,7 @@ MonoBehaviour:
   hp: 500
   bullet: {fileID: 1193549937964590, guid: 58cc96d334417ac47b87528ff5fe3526, type: 2}
   angle: 30
-  angle2: 35
+  angle2: 31
   firegroup1: {fileID: 1268300249294522}
   firegroup2: {fileID: 1237418914889262}
   laser1: {fileID: 1167343851284730, guid: 1a19961c091737c49b7a9007d6e681f0, type: 2}
